@@ -36,7 +36,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  cursor: auto; /* Standard cursor */
+  cursor: auto; 
   background: var(--void);
   background-image:
     radial-gradient(ellipse 70% 50% at 50% -5%, rgba(180,110,255,0.18), transparent 65%),
@@ -138,7 +138,6 @@ button { font-family: inherit; }
   overflow: hidden;
 }
 
-/* diagonal vaporwave geometry zone — top-right corner */
 .nameplate::before {
   content: '';
   position: absolute;
@@ -153,7 +152,6 @@ button { font-family: inherit; }
   pointer-events: none;
 }
 
-/* second layer — pink streak, sharper angle */
 .nameplate::after {
   content: '';
   position: absolute;
@@ -223,7 +221,7 @@ button { font-family: inherit; }
 }
 .nameplate-photo { flex-shrink: 0; }
 
-/* CRT PHOTO FRAME — pink as the default border accent */
+/* CRT PHOTO FRAME */
 .photo-bezel {
   background: linear-gradient(145deg,#2e1f52 0%,#1a1030 50%,#271540 100%);
   border: 2px solid var(--pink);
@@ -299,7 +297,7 @@ button { font-family: inherit; }
 .plate-label { font-family:var(--data); font-size:0.62rem; letter-spacing:0.08em; color:var(--cyan); text-shadow:0 0 10px var(--cyan-glow); text-transform:uppercase; }
 
 /* ============================================
-   READOUT STRIP — full bleed
+   READOUT STRIP
    ============================================ */
 .readout-strip {
   display: grid; grid-template-columns: repeat(4,1fr);
@@ -322,7 +320,6 @@ button { font-family: inherit; }
 .readout-value { font-family:var(--display); font-weight:600; font-size:1.4rem; text-transform:uppercase; text-shadow:0 0 18px rgba(95,251,241,0.45); margin:0; line-height:1; position:relative; z-index:1; transition: text-shadow 0.2s; }
 .readout-value .unit { font-family:var(--body); font-weight:400; font-size:0.9rem; color:var(--muted); margin-left:3px; }
 
-/* each stat its own color */
 .readout:nth-child(1) .readout-value { color: var(--cyan);   text-shadow: 0 0 18px rgba(95,251,241,0.45); }
 .readout:nth-child(2) .readout-value { color: var(--pink);   text-shadow: 0 0 18px rgba(255,110,199,0.45); }
 .readout:nth-child(3) .readout-value { color: var(--orange); text-shadow: 0 0 18px rgba(255,157,118,0.45); }
@@ -356,7 +353,7 @@ button { font-family: inherit; }
 .section-heading.tight { margin-bottom:0; }
 
 /* ============================================
-   SCHEMATIC — now centered like everything else
+   SCHEMATIC
    ============================================ */
 .schematic-figure {
   max-width: var(--inner);
@@ -401,7 +398,7 @@ button { font-family: inherit; }
 .filter-btn {
   font-family:var(--data); font-size:0.72rem; letter-spacing:0.04em; text-transform:uppercase;
   background:var(--panel); color:var(--text-soft); border:none;
-  border-right:1px solid var(--line-strong); padding:9px 16px; cursor:none;
+  border-right:1px solid var(--line-strong); padding:9px 16px; cursor:auto;
   transition:background 0.15s,color 0.15s,text-shadow 0.15s;
 }
 .filter-btn:last-child { border-right:none; }
@@ -409,7 +406,7 @@ button { font-family: inherit; }
 .filter-btn.active { background:var(--pink); color:var(--void); font-weight:600; box-shadow:0 0 20px var(--pink-glow); }
 
 /* ============================================
-   TRIBBY FEATURED CARD — now centered
+   TRIBBY FEATURED CARD
    ============================================ */
 .tribby-card {
   position:relative; background:var(--panel); border-top:1px solid var(--line-strong);
@@ -478,7 +475,7 @@ button { font-family: inherit; }
 .platform-status.coming { color:var(--muted); }
 
 /* ============================================
-   UNIT GRID — now centered
+   UNIT GRID
    ============================================ */
 .unit-grid {
   display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -616,7 +613,6 @@ button { font-family: inherit; }
 .modal-desc { font-size:0.96rem; color:var(--text-soft); line-height:1.65; margin:0 0 22px; }
 .modal-actions { display:flex; gap:10px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:18px; }
 
-/* modal platform rows (Tribby) */
 .modal-platform-list { display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); }
 .modal-platform-row {
   display:flex; align-items:center; gap:16px; flex-wrap:wrap;
@@ -664,19 +660,26 @@ button { font-family: inherit; }
   .modal-platform-row { flex-direction: column; align-items: flex-start; gap: 10px; padding: 12px; }
   .modal-actions { flex-direction: column; }
   .modal-actions .btn-link { width: 100%; text-align: center; justify-content: center; }
+
+  /* ⭐ Mobile QoL updates */
+  .tribby-platforms .platform-col { padding: 16px; }
+  .btn-link {
+    padding: 12px 16px;
+    min-height: 44px;
+  }
 }
 
 /* ============================================
    ⭐ FINAL POLISHES
    ============================================ */
 
-/* 1. Force dark backgrounds on input fields (fixes white box bug) */
+/* Force dark backgrounds on input fields */
 input, textarea, select {
   background: var(--panel) !important;
   color: var(--text) !important;
 }
 
-/* 2. Stagger the Focus Items to slide in one by one naturally */
+/* Stagger the Focus Items to slide in one by one */
 .reveal-visible .focus-item:nth-child(1) { transition-delay: 0.0s; }
 .reveal-visible .focus-item:nth-child(2) { transition-delay: 0.1s; }
 .reveal-visible .focus-item:nth-child(3) { transition-delay: 0.2s; }

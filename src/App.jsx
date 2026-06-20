@@ -4,7 +4,8 @@ import emailjs from '@emailjs/browser';
 import { PROJECTS_DATA, TRIBBY } from './projectsData';
 import SkillSchematic from './SkillSchematic';
 import Reveal from './Reveal';
-import profilePhoto from './bene.jpg';
+// ⭐ Changed import from .jpg to .webp (rename your actual file to bene.webp!)
+import profilePhoto from './bene.webp'; 
 import './App.css';
 
 const FOCUS_AREAS = [
@@ -97,7 +98,6 @@ export default function App() {
 
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
 
-  // ⭐ EmailJS integration
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSending(true);
@@ -117,6 +117,8 @@ export default function App() {
     try {
       await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
       setStatus('success');
+      // ⭐ Auto-dismiss success message after 5 seconds
+      setTimeout(() => setStatus(null), 5000); 
       setForm({ name: '', email: '', message: '' });
     } catch (err) {
       console.error('EmailJS error:', err);
@@ -130,13 +132,12 @@ export default function App() {
 
   return (
     <div className="site-root">
-      {/* REMOVED CURSORGLOW HERE */}
       <div className="crt-overlay" aria-hidden="true" />
 
       {/* TOP RAIL */}
       <div className="top-rail">
         <span className="doc-id">DOC // BR-PORTFOLIO</span>
-        <span>Manila, PH</span>
+        <span>Manila City, PH</span>
         <span className="rev-tag"><span className="dot" />Available for work</span>
       </div>
 
@@ -155,7 +156,7 @@ export default function App() {
             <div className="nameplate-photo">
               <div className="photo-bezel">
                 <div className="photo-screen">
-                  <img src={profilePhoto} alt="Benedict, IT technician and developer" />
+                  <img src={profilePhoto} alt="Benedict, IT technician and developer" loading="lazy" />
                   <div className="photo-scanlines" aria-hidden="true" />
                   <div className="photo-glare"    aria-hidden="true" />
                 </div>
