@@ -36,8 +36,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  /* ⭐ FIX: Default to auto cursor (fixes ghost cursor on touchscreens) */
-  cursor: auto; 
+  cursor: auto; /* Standard cursor */
   background: var(--void);
   background-image:
     radial-gradient(ellipse 70% 50% at 50% -5%, rgba(180,110,255,0.18), transparent 65%),
@@ -53,13 +52,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ⭐ FIX: Only hide cursor when the JS decides it's safe */
-body.custom-cursor-active {
-  cursor: none;
-}
-
-@media (pointer: coarse) { body { cursor: auto; } }
-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
@@ -68,30 +60,6 @@ body.custom-cursor-active {
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; }
 :focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
-
-/* ============================================
-   CURSOR
-   ============================================ */
-.cursor-canvas {
-  position: fixed; inset: 0;
-  pointer-events: none; z-index: 9997;
-}
-.cursor-dot {
-  position: fixed; top: 0; left: 0;
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--pink);
-  pointer-events: none; z-index: 9999;
-  will-change: transform;
-  transition: background 0.1s, box-shadow 0.1s, transform 0.08s;
-}
-.cursor-ring {
-  position: fixed; top: 0; left: 0;
-  width: 32px; height: 32px; border-radius: 50%;
-  border: 1.5px solid var(--pink);
-  pointer-events: none; z-index: 9998;
-  will-change: transform, width, height;
-  transition: border-color 0.15s, opacity 0.15s;
-}
 
 /* ============================================
    CRT OVERLAY
@@ -554,7 +522,7 @@ button { font-family: inherit; }
 .btn-link {
   font-family:var(--data); font-size:0.72rem; letter-spacing:0.04em; text-transform:uppercase;
   color:var(--text); background:transparent; border:1px solid var(--line-strong);
-  padding:8px 14px; cursor:none; display:inline-block; position:relative; overflow:hidden;
+  padding:8px 14px; cursor:auto; display:inline-block; position:relative; overflow:hidden;
   transition:color 0.2s,border-color 0.2s,box-shadow 0.2s;
 }
 .btn-link::before {
@@ -637,7 +605,7 @@ button { font-family: inherit; }
 @keyframes modal-in { from{opacity:0;transform:translateY(12px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
 .modal-close {
   position:absolute; top:18px; right:18px; background:transparent; border:1px solid var(--line-strong);
-  color:var(--muted); font-family:var(--data); font-size:0.68rem; padding:4px 9px; cursor:none;
+  color:var(--muted); font-family:var(--data); font-size:0.68rem; padding:4px 9px; cursor:auto;
   transition:border-color 0.15s,color 0.15s,box-shadow 0.15s;
   z-index: 10;
 }

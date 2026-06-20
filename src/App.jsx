@@ -4,7 +4,6 @@ import emailjs from '@emailjs/browser';
 import { PROJECTS_DATA, TRIBBY } from './projectsData';
 import SkillSchematic from './SkillSchematic';
 import Reveal from './Reveal';
-import CursorGlow from './CursorGlow';
 import profilePhoto from './bene.jpg';
 import './App.css';
 
@@ -15,7 +14,7 @@ const FOCUS_AREAS = [
   { tag: '04', title: 'Desktop & app development',body: 'Currently exploring native desktop and mobile app development to extend past the browser.' },
 ];
 
-// ── Modal body (unchanged) ──────────────────────────────────────────────
+// ── Modal body ──────────────────────────────────────────────────────────────
 function ModalBody({ project, onClose }) {
   const isTribby = project.id === 'tribby';
   return (
@@ -104,16 +103,15 @@ export default function App() {
     setSending(true);
     setStatus(null);
 
-    // ⚠️ Replace this with your actual Template ID
     const SERVICE_ID = 'service_31p4jxt';
-    const TEMPLATE_ID = 'template_v84zy1a';  // <-- PASTE YOUR TEMPLATE ID HERE
+    const TEMPLATE_ID = 'template_v84zy1a';
     const PUBLIC_KEY  = 'ET8iCwkVEDVhN5E06';
 
     const templateParams = {
-      from_name: form.name || 'Anonymous',
-      from_email: form.email || 'no-email@example.com',
+      name: form.name || 'Anonymous',
+      email: form.email || 'no-email@example.com',
       message: form.message,
-      time: new Date().toLocaleString(), // optional: adds current date/time
+      time: new Date().toLocaleString(),
     };
 
     try {
@@ -132,7 +130,7 @@ export default function App() {
 
   return (
     <div className="site-root">
-      <CursorGlow />
+      {/* REMOVED CURSORGLOW HERE */}
       <div className="crt-overlay" aria-hidden="true" />
 
       {/* TOP RAIL */}
@@ -141,7 +139,7 @@ export default function App() {
         <span>Manila, PH</span>
         <span className="rev-tag"><span className="dot" />Available for work</span>
       </div>
-git status
+
       {/* ── NAMEPLATE ── */}
       <section className="nameplate">
         <div className="nameplate-inner">
