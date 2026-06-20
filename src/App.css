@@ -621,46 +621,50 @@ button { font-family: inherit; }
    MODAL
    ============================================ */
 .modal-veil {
-  position:fixed; inset:0; background:rgba(10,7,20,0.82); backdrop-filter:blur(4px);
-  display:flex; align-items:center; justify-content:center; padding:20px; z-index:9990;
-  animation:veil-in 0.15s ease;
+  position: fixed; inset: 0; background: rgba(10,7,20,0.82); backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 9990;
+  animation: veil-in 0.15s ease;
 }
 @keyframes veil-in { from{opacity:0} to{opacity:1} }
 .modal-sheet {
-  max-width:580px; width:100%; background:var(--panel-raised); border:1px solid var(--line-strong); padding:32px;
-  position:relative;
-  box-shadow:0 0 0 1px rgba(95,251,241,0.08),0 30px 80px -20px rgba(180,110,255,0.4),0 0 60px rgba(255,110,199,0.1);
-  animation:modal-in 0.22s cubic-bezier(0.16,1,0.3,1);
+  max-width: 580px; width: 100%; background: var(--panel-raised); border: 1px solid var(--line-strong); padding: 32px;
+  position: relative;
+  box-shadow: 0 0 0 1px rgba(95,251,241,0.08), 0 30px 80px -20px rgba(180,110,255,0.4), 0 0 60px rgba(255,110,199,0.1);
+  animation: modal-in 0.22s cubic-bezier(0.16,1,0.3,1);
+  
+  /* ⭐ FIX: Make the modal scrollable on small screens */
+  max-height: 90vh; 
+  overflow-y: auto; 
 }
 @keyframes modal-in { from{opacity:0;transform:translateY(12px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
 .modal-close {
-  position:absolute; top:18px; right:18px; background:transparent; border:1px solid var(--line-strong);
-  color:var(--muted); font-family:var(--data); font-size:0.68rem; padding:4px 9px; cursor:none;
-  transition:border-color 0.15s,color 0.15s,box-shadow 0.15s;
+  position: absolute; top: 18px; right: 18px; background: transparent; border: 1px solid var(--line-strong);
+  color: var(--muted); font-family: var(--data); font-size: 0.68rem; padding: 4px 9px; cursor: none;
+  transition: border-color 0.15s, color 0.15s, box-shadow 0.15s;
+  z-index: 10; /* Ensures button stays above scrollable content */
 }
-.modal-close:hover { border-color:var(--cyan); color:var(--cyan); box-shadow:0 0 14px rgba(95,251,241,0.25); }
-.modal-sheet .unit-id { margin-bottom:10px; display:inline-block; }
-.modal-sheet h3 { font-family:var(--display); font-weight:700; font-size:1.8rem; text-transform:uppercase; margin:0 0 14px; padding-right:70px; color:var(--text); }
-.modal-spec-table { margin:16px 0 20px; }
-.modal-desc { font-size:0.96rem; color:var(--text-soft); line-height:1.65; margin:0 0 22px; }
-.modal-actions { display:flex; gap:10px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:18px; }
+.modal-close:hover { border-color: var(--cyan); color: var(--cyan); box-shadow: 0 0 14px rgba(95,251,241,0.25); }
+.modal-sheet .unit-id { margin-bottom: 10px; display: inline-block; }
+.modal-sheet h3 { font-family: var(--display); font-weight: 700; font-size: 1.8rem; text-transform: uppercase; margin: 0 0 14px; padding-right: 70px; color: var(--text); }
+.modal-spec-table { margin: 16px 0 20px; }
+.modal-desc { font-size: 0.96rem; color: var(--text-soft); line-height: 1.65; margin: 0 0 22px; }
+.modal-actions { display: flex; gap: 10px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 18px; }
 
 /* modal platform rows (Tribby) */
-.modal-platform-list { display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); }
+.modal-platform-list { display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); }
 .modal-platform-row {
-  display:flex; align-items:center; gap:16px; flex-wrap:wrap;
-  background:var(--panel-raised); padding:14px 16px;
-  border-left:2px solid transparent; transition:background 0.15s;
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  background: var(--panel-raised); padding: 14px 16px;
+  border-left: 2px solid transparent; transition: background 0.15s;
 }
-.modal-platform-row.web     { border-left-color:var(--cyan); }
-.modal-platform-row.desktop { border-left-color:var(--pink); }
-.modal-platform-row.android { border-left-color:var(--purple); }
-.modal-platform-row:hover { background:rgba(28,21,53,0.95); }
-.modal-platform-label { font-family:var(--data); font-size:0.7rem; letter-spacing:0.06em; text-transform:uppercase; display:flex; align-items:center; gap:6px; min-width:72px; }
-.modal-platform-row.web     .modal-platform-label { color:var(--cyan); }
-.modal-platform-row.desktop .modal-platform-label { color:var(--pink); }
-.modal-platform-row.android .modal-platform-label { color:var(--purple); }
-
+.modal-platform-row.web     { border-left-color: var(--cyan); }
+.modal-platform-row.desktop { border-left-color: var(--pink); }
+.modal-platform-row.android { border-left-color: var(--purple); }
+.modal-platform-row:hover { background: rgba(28,21,53,0.95); }
+.modal-platform-label { font-family: var(--data); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 6px; min-width: 72px; }
+.modal-platform-row.web     .modal-platform-label { color: var(--cyan); }
+.modal-platform-row.desktop .modal-platform-label { color: var(--pink); }
+.modal-platform-row.android .modal-platform-label { color: var(--purple); }
 /* ============================================
    RESPONSIVE
    ============================================ */
@@ -688,9 +692,14 @@ button { font-family: inherit; }
   .bottom-rail { flex-direction: column; gap: 6px; text-align: center; }
   .top-rail { flex-direction: column; gap: 8px; text-align: center; }
   .unit-grid { grid-template-columns: 1fr; }
-  .modal-platform-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+  
+  /* ⭐ FIX: Better mobile spacing for the modal */
+  .modal-sheet { padding: 20px; max-height: 80vh; }
+  .modal-sheet h3 { padding-right: 50px; font-size: 1.5rem; }
+  .modal-platform-row { flex-direction: column; align-items: flex-start; gap: 10px; padding: 12px; }
+  .modal-actions { flex-direction: column; }
+  .modal-actions .btn-link { width: 100%; text-align: center; justify-content: center; }
 }
-
 /* ============================================
    ⭐ FINAL POLISHES
    ============================================ */
