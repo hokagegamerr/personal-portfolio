@@ -15,8 +15,16 @@ export default function CursorGlow() {
   useEffect(() => {
     const isFine = window.matchMedia('(pointer: fine)').matches;
     const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!isFine || noMotion) return;
+    
+    // If no mouse is detected, we keep the default OS cursor
+    if (!isFine || noMotion) {
+      document.body.classList.remove('custom-cursor-active');
+      return;
+    }
+
+    // Enable custom cursor
     setEnabled(true);
+    document.body.classList.add('custom-cursor-active');
   }, []);
 
   useEffect(() => {
@@ -152,6 +160,7 @@ export default function CursorGlow() {
         el.removeEventListener('mouseenter', onEnterInteractive);
         el.removeEventListener('mouseleave', onLeaveInteractive);
       });
+      document.body.classList.remove('custom-cursor-active');
     };
   }, [enabled]);
 
