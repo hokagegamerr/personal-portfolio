@@ -138,10 +138,10 @@ export default function App() {
       {/* TOP RAIL */}
       <div className="top-rail">
         <span className="doc-id">DOC // BR-PORTFOLIO</span>
-        <span>Quezon City, PH</span>
+        <span>Manila, PH</span>
         <span className="rev-tag"><span className="dot" />Available for work</span>
       </div>
-
+git status
       {/* ── NAMEPLATE ── */}
       <section className="nameplate">
         <div className="nameplate-inner">
