@@ -81,9 +81,9 @@ export default function SkillSchematic() {
       </g>
 
       <g>
-        <rect x="660" y="44" width="210" height="58" fill="#161029" stroke="#5ffbf1" strokeWidth="1.5" strokeDasharray="5 4" />
+        <rect x="660" y="44" width="210" height="58" fill="#161029" stroke="#5ffbf1" strokeWidth="1.5" />
         <text x="765" y="65" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="9.5" letterSpacing="1" fill="#ff6ec7">DESKTOP &amp; APP DEV</text>
-        <text x="765" y="84" textAnchor="middle" fontFamily="Source Sans 3, sans-serif" fontSize="13" fontWeight="600" fill="#f0eaf5">Currently exploring</text>
+        <text x="765" y="84" textAnchor="middle" fontFamily="Source Sans 3, sans-serif" fontSize="13" fontWeight="600" fill="#f0eaf5">Python, Tkinter &amp; Flutter</text>
       </g>
 
       {/* connector lines down to output */}

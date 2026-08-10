@@ -694,3 +694,13 @@ html, body, * {
 a, button, input, textarea, select, [role="button"] {
   cursor: pointer !important;
 }
+/* Honeypot field — off-screen, not display:none, so it still fools bots
+   that check computed visibility rather than just skipping hidden inputs. */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}

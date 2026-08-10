@@ -12,7 +12,7 @@ const FOCUS_AREAS = [
   { tag: '01', title: 'Web development',         body: 'Full-stack builds across React, PHP, and MySQL — from schema design to shipped interface.' },
   { tag: '02', title: 'Hardware deployment',      body: 'Custom build assembly, diagnostics, and on-site repair for client and personal systems.' },
   { tag: '03', title: 'System optimization',      body: 'Shell scripting, environment configuration, and tuning for stable day-to-day performance.' },
-  { tag: '04', title: 'Desktop & app development',body: 'Currently exploring native desktop and mobile app development to extend past the browser.' },
+  { tag: '04', title: 'Desktop & app development',body: 'Native builds in Python/Tkinter and Dart/Flutter, extending the same product logic past the browser.' },
 ];
 
 // ── Modal body ──────────────────────────────────────────────────────────────
@@ -88,7 +88,7 @@ function ModalBody({ project, onClose }) {
 export default function App() {
   const [activeFilter, setActiveFilter] = useState('all');
   const [openProject, setOpenProject]   = useState(null);
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', message: '', company: '' }); // 'company' is a honeypot
   const [sending, setSending] = useState(false);
   const [status, setStatus] = useState(null); // 'success' | 'error'
 
@@ -96,10 +96,23 @@ export default function App() {
     ? PROJECTS_DATA
     : PROJECTS_DATA.filter(p => p.category === activeFilter);
 
+  // TRIBBY counts as 1 shipped build even though it spans 3 platforms
+  const shippedBuildsCount = PROJECTS_DATA.length + 1;
+
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Honeypot: real users never fill this out (it's visually hidden).
+    // Bots that auto-fill every field will trip it — pretend to succeed and stop.
+    if (form.company) {
+      setStatus('success');
+      setTimeout(() => setStatus(null), 5000);
+      setForm({ name: '', email: '', message: '', company: '' });
+      return;
+    }
+
     setSending(true);
     setStatus(null);
 
@@ -119,7 +132,7 @@ export default function App() {
       setStatus('success');
       // ⭐ Auto-dismiss success message after 5 seconds
       setTimeout(() => setStatus(null), 5000); 
-      setForm({ name: '', email: '', message: '' });
+      setForm({ name: '', email: '', message: '', company: '' });
     } catch (err) {
       console.error('EmailJS error:', err);
       setStatus('error');
@@ -149,8 +162,8 @@ export default function App() {
               <p className="nameplate-eyebrow">Student Analyst / IT Technician / Developer</p>
               <h1 className="nameplate-name" data-text="Benedict">Benedict</h1>
               <p className="nameplate-role">
-                I'm a student analyst who also builds for the web, deploys and repairs hardware, and is currently branching
-                into desktop and app development. Based in the Philippines, working primarily on Windows.
+                I'm a student analyst who also builds for the web, deploys and repairs hardware, and ships
+                native desktop and mobile apps. Based in the Philippines, working primarily on Windows.
               </p>
             </div>
             <div className="nameplate-photo">
@@ -172,8 +185,8 @@ export default function App() {
         <div className="readout-strip">
           <div className="readout"><p className="readout-label">Primary OS</p>    <p className="readout-value">Windows</p></div>
           <div className="readout"><p className="readout-label">Core Stack</p>    <p className="readout-value">Web Dev</p></div>
-          <div className="readout"><p className="readout-label">Shipped Builds</p><p className="readout-value">4<span className="unit">projects</span></p></div>
-          <div className="readout"><p className="readout-label">Exploring</p>     <p className="readout-value">Desktop<span className="unit">+ apps</span></p></div>
+          <div className="readout"><p className="readout-label">Shipped Builds</p><p className="readout-value">{shippedBuildsCount}<span className="unit">projects</span></p></div>
+          <div className="readout"><p className="readout-label">Also Ships</p>    <p className="readout-value">Desktop<span className="unit">+ apps</span></p></div>
         </div>
       </section>
 
@@ -187,7 +200,7 @@ export default function App() {
           <SkillSchematic />
         </div>
         <div className="section-inner">
-          <p className="schematic-caption">FIG. 1 — from hardware support to shipped application, desktop &amp; app dev in active exploration</p>
+          <p className="schematic-caption">FIG. 1 — from hardware support to shipped applications, desktop, and mobile</p>
         </div>
       </Reveal>
 
@@ -200,8 +213,8 @@ export default function App() {
             I'm a student analyst and web developer working primarily across <strong>React</strong> and{' '}
             <strong>PHP/MySQL</strong>, with a background in IT support — hardware
             troubleshooting, custom build assembly, and client deployments on{' '}
-            <strong>Windows</strong> environments. I'm currently expanding into desktop
-            and mobile app development, building outward from the web work that's been my main focus.
+            <strong>Windows</strong> environments. I've since extended that into native
+            desktop and mobile app development, building outward from the web work that's been my main focus.
           </p>
         </div>
         <div className="split-col">
@@ -212,7 +225,7 @@ export default function App() {
               <tr><td className="spec-key">Languages</td>  <td className="spec-val">React, Next.js, Node.js, PHP, Python, C#</td></tr>
               <tr><td className="spec-key">Database</td>   <td className="spec-val">MySQL</td></tr>
               <tr><td className="spec-key">Tooling</td>    <td className="spec-val">VS Code, Git, Bash</td></tr>
-              <tr><td className="spec-key">Environment</td><td className="spec-val">Windows, exploring desktop &amp; app dev</td></tr>
+              <tr><td className="spec-key">Environment</td><td className="spec-val">Windows, ships to desktop &amp; mobile</td></tr>
             </tbody>
           </table>
         </div>
@@ -319,6 +332,17 @@ export default function App() {
           <p className="section-eyebrow">Get in touch</p>
           <h2 className="section-heading">Contact</h2>
           <form onSubmit={handleSubmit}>
+            {/* Honeypot — hidden from real users via CSS, tempting to bots */}
+            <input
+              type="text"
+              name="company"
+              value={form.company}
+              onChange={handleChange}
+              className="hp-field"
+              tabIndex="-1"
+              autoComplete="off"
+              aria-hidden="true"
+            />
             <div className="contact-form-field">
               <label htmlFor="name">Name</label>
               <input id="name" name="name" type="text" value={form.name} onChange={handleChange} placeholder="Your name" required />
