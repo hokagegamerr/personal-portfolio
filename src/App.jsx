@@ -146,10 +146,10 @@ export default function App() {
         <div className="nameplate-inner">
           <div className="nameplate-top">
             <div>
-              <p className="nameplate-eyebrow">IT Technician / Developer</p>
+              <p className="nameplate-eyebrow">Student Analyst / IT Technician / Developer</p>
               <h1 className="nameplate-name" data-text="Benedict">Benedict</h1>
               <p className="nameplate-role">
-                I build for the web, deploy and repair hardware, and I'm currently branching
+                I'm a student analyst who also builds for the web, deploys and repairs hardware, and is currently branching
                 into desktop and app development. Based in the Philippines, working primarily on Windows.
               </p>
             </div>
@@ -197,7 +197,7 @@ export default function App() {
           <p className="section-eyebrow">Background</p>
           <h2 className="section-heading">About</h2>
           <p className="about-text">
-            I'm a web developer working primarily across <strong>React</strong> and{' '}
+            I'm a student analyst and web developer working primarily across <strong>React</strong> and{' '}
             <strong>PHP/MySQL</strong>, with a background in IT support — hardware
             troubleshooting, custom build assembly, and client deployments on{' '}
             <strong>Windows</strong> environments. I'm currently expanding into desktop
@@ -352,7 +352,7 @@ export default function App() {
 
       {/* ── FOOTER ── */}
       <div className="bottom-rail">
-        <span>Benedict — IT Technician / Developer</span>
+        <span>Benedict — Student Analyst / IT Technician / Developer</span>
         <span>© 2026</span>
       </div>
 
